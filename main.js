@@ -36,8 +36,15 @@ function save() {
 	const filenameDOMElement = document.querySelector(filenameCSS);
 	const filename = filenameDOMElement.textContent.replaceAll(' ', '');
 
-	const API_DATA = `path=${filename}&data=Django%0A`;
+	let codeLines = Array.from(document.querySelectorAll('.CodeMirror-line > span'));
 
+	let codeText = codeLines.reduce((acc, cur) => acc + cur.textContent + '\n', '');
+
+	codeText = codeText.replace(/\n$/, '')
+	let data = encodeURIComponent(codeText)
+	data = data.replaceAll('%E2%80%8B', '');
+
+	const API_DATA = `path=${filename}&data=${data}`;
 
 	console.log('Saving boss...');
 	postData(API_URL, API_DATA)
