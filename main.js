@@ -34,7 +34,6 @@ function save() {
 
 	const filenameCSS = '.secondary-green.font-weight-moderate.text-body-2.py-4';
 	const filenameDOMElement = document.querySelector(filenameCSS);
-	console.log('Saving boss...');
 	const filename = filenameDOMElement.textContent.replaceAll(' ', '');
 
 	let codeLines = Array.from(document.querySelectorAll('.CodeMirror-line > span'));
