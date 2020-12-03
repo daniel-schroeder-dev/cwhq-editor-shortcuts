@@ -31,7 +31,15 @@ document.body.addEventListener('keyup', e => {
 
 function save() {
 	const API_URL = 'https://danielj.codewizardshq.com/edit/api/set/';
-	const API_DATA = 'path=foo.txt&data=Django%0A';
+	
+
+	const filenameCSS = '.secondary-green.font-weight-moderate.text-body-2.py-4';
+	const filenameDOMElement = document.querySelector(filenameCSS);
+	const filename = filenameDOMElement.textContent.replaceAll(' ', '');
+
+	const API_DATA = `path=${filename}&data=Django%0A`;
+
+
 	console.log('Saving boss...');
 	postData(API_URL, API_DATA)
 		.then(data => {
