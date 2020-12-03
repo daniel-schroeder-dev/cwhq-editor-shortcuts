@@ -34,6 +34,7 @@ function save() {
 
 	const filenameCSS = '.secondary-green.font-weight-moderate.text-body-2.py-4';
 	const filenameDOMElement = document.querySelector(filenameCSS);
+	console.log('Saving boss...');
 	const filename = filenameDOMElement.textContent.replaceAll(' ', '');
 
 	let codeLines = Array.from(document.querySelectorAll('.CodeMirror-line > span'));
@@ -45,12 +46,18 @@ function save() {
 	data = data.replaceAll('%E2%80%8B', '');
 
 	const API_DATA = `path=${filename}&data=${data}`;
-
-	console.log('Saving boss...');
+	changeCaretColor();
 	postData(API_URL, API_DATA)
 		.then(data => {
     	console.log(data); // JSON data parsed by `data.json()` call
   	});
+}
+
+function changeCaretColor() {
+	const GREEN = 'rgb(4, 154, 104)';
+	const caretCSS = '.v-icon.notranslate.mdi.mdi-checkbox-blank-circle.theme--dark';
+	const caretDOMElement = document.querySelector(caretCSS)
+	caretDOMElement.style.color = GREEN;
 }
 
 
